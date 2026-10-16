@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?</title>
+<meta name="description" content="AGENTS.md, CLAUDE.md, Cursor rules and Copilot instructions explained: what each file does, which tools read it, and a simple setup that keeps them in sync.">
+<link rel="canonical" href="https://agentkitco.com/blog/agents-md-vs-claude-md-vs-cursor-rules/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="/assets/favicon.4166b660f0.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.49fbf7f475.css">
+<meta property="og:site_name" content="AgentKit Co">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?">
+<meta property="og:description" content="AGENTS.md, CLAUDE.md, Cursor rules and Copilot instructions explained: what each file does, which tools read it, and a simple setup that keeps them in sync.">
+<meta property="og:url" content="https://agentkitco.com/blog/agents-md-vs-claude-md-vs-cursor-rules/">
+<meta property="og:image" content="https://agentkitco.com/assets/og-cfg.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?">
+<meta name="twitter:description" content="AGENTS.md, CLAUDE.md, Cursor rules and Copilot instructions explained: what each file does, which tools read it, and a simple setup that keeps them in sync.">
+<meta name="twitter:image" content="https://agentkitco.com/assets/og-cfg.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?", "description": "AGENTS.md, CLAUDE.md, Cursor rules and Copilot instructions explained: what each file does, which tools read it, and a simple setup that keeps them in sync.", "datePublished": "2026-10-16", "dateModified": "2026-10-15", "mainEntityOfPage": "https://agentkitco.com/blog/agents-md-vs-claude-md-vs-cursor-rules/", "image": "https://agentkitco.com/assets/og-cfg.png", "author": {"@type": "Organization", "name": "AgentKit Co"}, "publisher": {"@type": "Organization", "name": "AgentKit Co", "logo": {"@type": "ImageObject", "url": "https://agentkitco.com/assets/og-site.png"}}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://agentkitco.com/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://agentkitco.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?", "item": "https://agentkitco.com/blog/agents-md-vs-claude-md-vs-cursor-rules/"}]}</script>
+<script src="/assets/app.d03827e51a.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="bar">Launch offer: use code <code>LAUNCH20</code> for 20% off any single pack. <a href="/#products">See the packs</a></div>
+<header class="site"><div class="wrap">
+<a class="logo" href="/" aria-label="AgentKit Co home"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#4f46e5"/><path d="M18 44 32 16l14 28M23.5 36h17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="48" cy="18" r="4.5" fill="#f59e0b"/></svg><b>AgentKit<span> Co</span></b></a>
+<nav aria-label="Main"><ul><li><a href="/#products">Packs</a></li><li><a href="/free-prompts/">Free prompts</a></li><li><a href="/tools/agents-md-generator/">Free tool</a></li><li><a href="/blog/">Guides</a></li><li><a href="/advertise/">Advertise</a></li><li><a href="/about/">About</a></li></ul></nav>
+</div></header>
+<div id="live" class="vh" role="status" aria-live="polite"></div>
+<main id="main">
+<div class="narrow"><div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Guides</a></div>
+<article class="prose">
+<h1>AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?</h1>
+<p class="meta">Published 2026-10-16 &middot; 3 min read &middot; by AgentKit Co</p>
+<p>If you use an AI coding agent, you have probably been told to "write a rules file". Then you looked and found four or five different file names. This guide explains what each one is, which tools read it, and the smallest setup that works for most people. Everything here was checked against each tool's own documentation on 2026-10-16, but these tools change fast, so use the links at the end to confirm.</p>
+<h2>The one idea behind all of them</h2>
+<p>A coding agent starts every session knowing nothing about your project. An instruction file is the short note you would give a new teammate: how to run things, how the code is organized, what to avoid. The files differ only in which tool reads them and how precisely you can scope them.</p>
+<h2>The files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it is</th>
+<th>Who reads it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AGENTS.md</code></td>
+<td>Plain Markdown, no required fields. Can also live in subfolders; the closest file to the one being edited wins.</td>
+<td>Cursor, GitHub Copilot, OpenAI Codex, Zed, Warp, Windsurf and many others. Gemini CLI and Aider need a one-line setting.</td>
+</tr>
+<tr>
+<td><code>CLAUDE.md</code></td>
+<td>Markdown instructions for Claude Code. Project, personal (<code>~/.claude/CLAUDE.md</code>) and private (<code>CLAUDE.local.md</code>) versions.</td>
+<td>Claude Code</td>
+</tr>
+<tr>
+<td><code>.claude/rules/*.md</code></td>
+<td>Topic files. With a <code>paths:</code> list in the frontmatter they load only when matching files are in play.</td>
+<td>Claude Code</td>
+</tr>
+<tr>
+<td><code>.cursor/rules/*.mdc</code></td>
+<td>Cursor project rules with <code>description</code>, <code>globs</code> and <code>alwaysApply</code> frontmatter. A plain <code>.md</code> file there is ignored.</td>
+<td>Cursor</td>
+</tr>
+<tr>
+<td><code>.github/copilot-instructions.md</code></td>
+<td>Repository-wide Copilot instructions. Path-specific files go in <code>.github/instructions/</code> and use an <code>applyTo</code> glob.</td>
+<td>GitHub Copilot</td>
+</tr>
+</tbody>
+</table>
+<p>The old single-file <code>.cursorrules</code> is described in Cursor's docs as legacy, so new projects should skip it.</p>
+<h2>A setup that works for most people</h2>
+<ol>
+<li><strong>Write one <code>AGENTS.md</code></strong> at the repository root. Put commands, layout, conventions and boundaries in it.</li>
+<li><strong>If you use Claude Code, add a <code>CLAUDE.md</code></strong> whose first line is <code>@AGENTS.md</code>. That is Claude Code's import syntax, and it means you maintain the shared rules in one place. Anthropic's docs currently say Claude Code reads <code>AGENTS.md</code> by itself only when there is no <code>CLAUDE.md</code> in the working directory or above, which is why the bridge file is the safe choice.</li>
+<li><strong>Move area-specific rules into scoped files</strong> instead of growing the root file: a Cursor <code>.mdc</code> rule with <code>globs</code>, a Claude <code>.claude/rules/</code> file with <code>paths</code>, or a Copilot <code>.instructions.md</code> file with <code>applyTo</code>.</li>
+</ol>
+<pre><code class="language-text">@AGENTS.md
+
+## Claude Code
+- Use plan mode before changing anything under `src/billing/`.
+</code></pre>
+<h2>How long should the file be?</h2>
+<p>Shorter is better. Anthropic suggests keeping each <code>CLAUDE.md</code> under 200 lines, and Cursor suggests rules under 500 lines. A good target for the root file is 60 to 120 lines. Longer files use up context and make it more likely that a rule gets ignored.</p>
+<h2>Instruction files are guidance, not enforcement</h2>
+<p>An agent can still ignore a line. Claude Code's docs say plainly that it treats these files as context rather than enforced configuration. If something must never happen, such as touching production data, back the instruction with a permission setting, a hook or a git check.</p>
+<h2>Next steps</h2>
+<ul>
+<li>Build a first file in a minute with the free <a href="/tools/agents-md-generator/">AGENTS.md generator</a>. It runs in your browser and sends nothing anywhere.</li>
+<li>Read <a href="/blog/how-to-write-agents-md/">how to write an AGENTS.md that agents follow</a> for what to put in each section.</li>
+<li>For ready-made files for twelve stacks, scoped rules for Claude, Cursor and Copilot, and prompts that audit your setup, see the AI Coding Agent Config Kit below.</li>
+</ul>
+<p><strong>Sources:</strong> <a href="https://agents.md">agents.md</a>, <a href="https://docs.anthropic.com/en/docs/claude-code/memory">Claude Code memory docs</a>, <a href="https://cursor.com/docs/context/rules">Cursor rules docs</a>, <a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-repository-instructions">GitHub Copilot repository instructions</a>. AgentKit Co is not affiliated with these companies. This guide was written with AI assistance and checked against those pages.</p>
+<div class="cta"><h3>AI Coding Agent Config Kit</h3><p>Instruction-file templates for 12 stacks and 12 prompts that write and audit them. 34-page PDF, $14.</p>
+<div class="btns"><a class="btn" href="https://burmunster.gumroad.com/l/agent-config-kit">Buy on Gumroad</a><a class="btn alt" href="/products/agent-config-kit/">See what's inside</a></div></div>
+<div class="cta"><h3>Not ready to buy? Start with the free PDF.</h3><p>Get 10 of our most-used prompts as a free PDF from Gumroad. You will be asked for your email so Gumroad can deliver it.</p><div class="btns"><a class="btn" href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a><a class="btn alt" href="/free-prompts/">Browse 59 prompts here</a></div></div>
+<h2>Keep reading</h2><div class="post-list"><a href="/blog/how-to-write-agents-md/"><strong>How to Write an AGENTS.md That AI Coding Agents Follow</strong><span>A practical guide to writing AGENTS.md: the sections that matter, eight rules for lines agents actually follow, and a prompt that audits and trims your file.</span><span class="meta-line">3 min read</span></a><a href="/blog/what-is-an-ai-agent/"><strong>What Is an AI Agent? Plain-English Guide for Beginners</strong><span>What an AI agent is, how it differs from a chatbot or automation, and the four building blocks every agent has. No jargon.</span><span class="meta-line">4 min read</span></a><a href="/blog/build-ai-agent-without-coding/"><strong>Build Your First AI Agent Without Coding (Step by Step)</strong><span>A no-code walkthrough for building a simple AI agent in the chat assistant you already use, with a starter prompt and testing checklist.</span><span class="meta-line">4 min read</span></a></div>
+</article></div>
+</main>
+<footer class="site"><div class="wrap"><div class="cols">
+<div><h2>AgentKit Co</h2><p>Practical AI agent kits and prompt packs for beginners. Checkout is handled securely by Gumroad.</p><p><a href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a></p></div>
+<div><h2>Packs</h2><ul><li><a href="/products/ai-agent-starter-kit/">AI Agent Starter Kit</a></li><li><a href="/products/coding-prompt-pack/">Coding Prompt Pack</a></li><li><a href="/products/game-design-prompt-pack/">Game Design Pack</a></li><li><a href="/products/tabletop-rpg-prompt-pack/">Tabletop RPG Pack</a></li><li><a href="/products/agent-blueprints-vol-2/">Agent Blueprints Vol. 2</a></li><li><a href="/products/agent-config-kit/">AI Coding Agent Config Kit</a></li><li><a href="/products/agentkit-bundle/">Bundle ($24)</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="/free-prompts/">Free prompt library</a></li><li><a href="/tools/agents-md-generator/">AGENTS.md generator</a></li><li><a href="/blog/">Guides</a></li><li><a href="/blog/what-is-an-ai-agent/">What is an AI agent?</a></li></ul></div>
+<div><h2>Company</h2><ul><li><a href="/about/">About</a></li><li><a href="/advertise/">Advertise with us</a></li><li><a href="https://burmunster.gumroad.com/affiliates">Affiliate program (30%)</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/sitemap.xml">Sitemap</a></li></ul></div>
+</div><p class="legal">&copy; 2026 AgentKit Co. AI tools and product names mentioned belong to their owners. Example outputs in our guides are illustrative. AI can be wrong: read and test anything before you rely on it.</p></div></footer>
+</body></html>

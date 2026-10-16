@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChatGPT Prompts for Writing Unit Tests (That Actually Catch Bugs)</title>
+<meta name="description" content="Copy-paste AI prompts for writing unit tests: list cases first, generate readable tests, turn bugs into regression tests and review the tests the AI wrote.">
+<link rel="canonical" href="https://agentkitco.com/blog/ai-prompts-for-unit-tests/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="/assets/favicon.4166b660f0.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.49fbf7f475.css">
+<meta property="og:site_name" content="AgentKit Co">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChatGPT Prompts for Writing Unit Tests (That Actually Catch Bugs)">
+<meta property="og:description" content="Copy-paste AI prompts for writing unit tests: list cases first, generate readable tests, turn bugs into regression tests and review the tests the AI wrote.">
+<meta property="og:url" content="https://agentkitco.com/blog/ai-prompts-for-unit-tests/">
+<meta property="og:image" content="https://agentkitco.com/assets/og-coding.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="ChatGPT Prompts for Writing Unit Tests (That Actually Catch Bugs)">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ChatGPT Prompts for Writing Unit Tests (That Actually Catch Bugs)">
+<meta name="twitter:description" content="Copy-paste AI prompts for writing unit tests: list cases first, generate readable tests, turn bugs into regression tests and review the tests the AI wrote.">
+<meta name="twitter:image" content="https://agentkitco.com/assets/og-coding.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "ChatGPT Prompts for Writing Unit Tests (That Actually Catch Bugs)", "description": "Copy-paste AI prompts for writing unit tests: list cases first, generate readable tests, turn bugs into regression tests and review the tests the AI wrote.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "mainEntityOfPage": "https://agentkitco.com/blog/ai-prompts-for-unit-tests/", "image": "https://agentkitco.com/assets/og-coding.png", "author": {"@type": "Organization", "name": "AgentKit Co"}, "publisher": {"@type": "Organization", "name": "AgentKit Co", "logo": {"@type": "ImageObject", "url": "https://agentkitco.com/assets/og-site.png"}}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://agentkitco.com/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://agentkitco.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "ChatGPT Prompts for Writing Unit Tests (That Actually Catch Bugs)", "item": "https://agentkitco.com/blog/ai-prompts-for-unit-tests/"}]}</script>
+<script src="/assets/app.d03827e51a.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="bar">Launch offer: use code <code>LAUNCH20</code> for 20% off any single pack. <a href="/#products">See the packs</a></div>
+<header class="site"><div class="wrap">
+<a class="logo" href="/" aria-label="AgentKit Co home"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#4f46e5"/><path d="M18 44 32 16l14 28M23.5 36h17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="48" cy="18" r="4.5" fill="#f59e0b"/></svg><b>AgentKit<span> Co</span></b></a>
+<nav aria-label="Main"><ul><li><a href="/#products">Packs</a></li><li><a href="/free-prompts/">Free prompts</a></li><li><a href="/tools/agents-md-generator/">Free tool</a></li><li><a href="/blog/">Guides</a></li><li><a href="/advertise/">Advertise</a></li><li><a href="/about/">About</a></li></ul></nav>
+</div></header>
+<div id="live" class="vh" role="status" aria-live="polite"></div>
+<main id="main">
+<div class="narrow"><div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Guides</a></div>
+<article class="prose">
+<h1>ChatGPT Prompts for Writing Unit Tests (That Actually Catch Bugs)</h1>
+<p class="meta">Published 2026-10-15 &middot; 3 min read &middot; by AgentKit Co</p>
+<p>Ask an AI assistant to "write tests for this function" and you will get tests. They will look professional. They will usually pass. And too many of them will only prove that the code does what the code already does.</p>
+<p>Good tests are different. They describe what the code <em>should</em> do, including the awkward inputs you did not think about. The trick is to stop asking for "tests" and instead walk the assistant through the same steps a careful developer would. Below is a four-step workflow with a prompt for each step. Replace the <code>[BRACKETS]</code>, paste into any chat assistant, and read what comes back before you trust it.</p>
+<h2>Step 1: List the cases before any test code exists</h2>
+<p>If you jump straight to code, the assistant tests the happy path and stops. Ask for a list of cases first, so you can see what is missing and correct it.</p>
+<pre><code class="language-text">Here is a function:
+[PASTE FUNCTION]
+List the test cases it needs, grouped as:
+- Normal cases
+- Edge cases (empty, zero, negative, very large, duplicates, unusual characters, wrong type)
+- Error cases (what should happen with invalid input)
+Format as a table: Input | Expected result | Why this case matters.
+Don't write test code yet. If the expected result is unclear, say so.
+</code></pre>
+<p>Look at the table it returns. If an expected result is wrong, that is useful: it means the assistant (or you) misunderstood the function. Fix the table before moving on.</p>
+<h2>Step 2: Write the tests, with rules</h2>
+<p>Now ask for the tests, and give the assistant rules that keep them readable and honest.</p>
+<pre><code class="language-text">Write unit tests for this [LANGUAGE] code using [pytest / unittest / Jest / Vitest / other]:
+[PASTE CODE]
+- One test per behaviour, with descriptive test names.
+- Arrange / act / assert layout.
+- No real network, files or databases.
+- Include the exact command to run the tests.
+If the right behaviour for some input is unclear, write that test as a commented-out question instead of guessing.
+</code></pre>
+<p>The last line matters. When the right behaviour is unclear, a guess becomes a test that locks in a bug. A commented-out question is better than a confident wrong answer.</p>
+<p>Here is the shape of what you should expect, for a small <code>apply_discount(price, percent)</code> function in Python with pytest:</p>
+<pre><code class="language-python">import pytest
+from pricing import apply_discount
+
+def test_ten_percent_off_reduces_price():
+    assert apply_discount(100.00, 10) == 90.00
+
+def test_zero_percent_leaves_price_unchanged():
+    assert apply_discount(100.00, 0) == 100.00
+
+def test_negative_percent_is_rejected():
+    with pytest.raises(ValueError):
+        apply_discount(100.00, -5)
+
+# QUESTION: should a discount over 100% raise an error or clamp the price at 0?
+</code></pre>
+<p>Your assistant's wording and code will differ. The pattern to look for is one behaviour per test, names that read like sentences, and open questions flagged instead of guessed.</p>
+<h2>Step 3: Turn every bug you find into a test</h2>
+<p>The most valuable tests are the ones that come from real bugs. When you fix something, ask for a test that fails <em>before</em> the fix and passes after.</p>
+<pre><code class="language-text">I found this bug: [DESCRIPTION, including the input that fails].
+Code: [PASTE CODE]
+1. Write a test that reproduces the bug and FAILS on the current code.
+2. Show the fix.
+3. Explain how this test now guards against the bug coming back (a &quot;regression test&quot;).
+</code></pre>
+<p>Run the new test against the old code and watch it fail. A regression test you have never seen fail has not proven anything.</p>
+<h2>Step 4: Ask the assistant to review its own tests</h2>
+<p>Fresh eyes help, even artificial ones. Paste the tests and the code back in and ask what is weak.</p>
+<pre><code class="language-text">Review these tests:
+[PASTE TESTS]
+for this code:
+[PASTE CODE]
+1. Which important behaviours aren't tested?
+2. Which tests are fragile (they depend on timing, order, randomness or exact formatting)?
+3. Which tests check internal details instead of behaviour?
+Finish with the 3 changes that would add the most confidence.
+</code></pre>
+<p>Fragile tests (those that depend on timing, order, randomness or exact formatting) are the ones that fail on a Tuesday for no reason. Catching them early saves a lot of confusion.</p>
+<h2>A quick way to check that tests can fail</h2>
+<p>Pick one test. Break the code on purpose: change a <code>+</code> to a <code>-</code>, or return the wrong variable. Run the tests. At least one should fail. If nothing fails, your tests are not looking at the behaviour you care about. Undo the change afterwards.</p>
+<h2>Habits that keep AI-written tests honest</h2>
+<ul>
+<li><strong>Run them.</strong> An unrun test is only a suggestion.</li>
+<li><strong>Read every assertion.</strong> Ask yourself whether you would be surprised if it failed.</li>
+<li><strong>Keep secrets out of the chat.</strong> Replace real keys, tokens and customer data with <code>XXXX</code> before pasting.</li>
+<li><strong>Avoid real network, files and databases</strong> in unit tests. Ask for fakes or mocks instead.</li>
+<li><strong>Treat AI code as a draft.</strong> Always read and test AI-generated code before relying on it.</li>
+</ul>
+<h2>Want the full set?</h2>
+<p>These four prompts are a small slice of the testing section in the Prompt Pack for Coding, which also covers manual test checklists, tricky test data, mocks and fakes, and explaining failing tests. Another good starting point is our free prompt library, where you can copy more prompts with one click.</p>
+<div class="cta"><h3>Prompt Pack for Coding</h3><p>40 prompts to learn, debug and ship small projects. 22-page PDF, $9. Code LAUNCH20 = 20% off.</p>
+<div class="btns"><a class="btn" href="https://burmunster.gumroad.com/l/coding-prompt-pack">Buy on Gumroad</a><a class="btn alt" href="/products/coding-prompt-pack/">See what's inside</a></div></div>
+<div class="cta"><h3>Not ready to buy? Start with the free PDF.</h3><p>Get 10 of our most-used prompts as a free PDF from Gumroad. You will be asked for your email so Gumroad can deliver it.</p><div class="btns"><a class="btn" href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a><a class="btn alt" href="/free-prompts/">Browse 59 prompts here</a></div></div>
+<h2>Keep reading</h2><div class="post-list"><a href="/blog/debug-code-with-ai-prompts/"><strong>Debug Code With AI: 7 Copy-and-Paste Prompts That Work</strong><span>Seven copy-and-paste prompts for debugging with AI: decode errors, find the real cause, make smallest-diff fixes and add regression tests.</span><span class="meta-line">4 min read</span></a><a href="/blog/ai-prompts-for-learning-to-code/"><strong>AI Prompts for Learning to Code: 8 Prompts to Learn Faster</strong><span>Eight AI prompts that turn an assistant into a patient coding tutor: trace tables, three-way explanations, adaptive quizzes and more.</span><span class="meta-line">3 min read</span></a><a href="/blog/what-is-an-ai-agent/"><strong>What Is an AI Agent? Plain-English Guide for Beginners</strong><span>What an AI agent is, how it differs from a chatbot or automation, and the four building blocks every agent has. No jargon.</span><span class="meta-line">4 min read</span></a></div>
+</article></div>
+</main>
+<footer class="site"><div class="wrap"><div class="cols">
+<div><h2>AgentKit Co</h2><p>Practical AI agent kits and prompt packs for beginners. Checkout is handled securely by Gumroad.</p><p><a href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a></p></div>
+<div><h2>Packs</h2><ul><li><a href="/products/ai-agent-starter-kit/">AI Agent Starter Kit</a></li><li><a href="/products/coding-prompt-pack/">Coding Prompt Pack</a></li><li><a href="/products/game-design-prompt-pack/">Game Design Pack</a></li><li><a href="/products/tabletop-rpg-prompt-pack/">Tabletop RPG Pack</a></li><li><a href="/products/agent-blueprints-vol-2/">Agent Blueprints Vol. 2</a></li><li><a href="/products/agent-config-kit/">AI Coding Agent Config Kit</a></li><li><a href="/products/agentkit-bundle/">Bundle ($24)</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="/free-prompts/">Free prompt library</a></li><li><a href="/tools/agents-md-generator/">AGENTS.md generator</a></li><li><a href="/blog/">Guides</a></li><li><a href="/blog/what-is-an-ai-agent/">What is an AI agent?</a></li></ul></div>
+<div><h2>Company</h2><ul><li><a href="/about/">About</a></li><li><a href="/advertise/">Advertise with us</a></li><li><a href="https://burmunster.gumroad.com/affiliates">Affiliate program (30%)</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/sitemap.xml">Sitemap</a></li></ul></div>
+</div><p class="legal">&copy; 2026 AgentKit Co. AI tools and product names mentioned belong to their owners. Example outputs in our guides are illustrative. AI can be wrong: read and test anything before you rely on it.</p></div></footer>
+</body></html>

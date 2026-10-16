@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Write an AGENTS.md That AI Coding Agents Follow</title>
+<meta name="description" content="A practical guide to writing AGENTS.md: the sections that matter, eight rules for lines agents actually follow, and a prompt that audits and trims your file.">
+<link rel="canonical" href="https://agentkitco.com/blog/how-to-write-agents-md/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="/assets/favicon.4166b660f0.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.49fbf7f475.css">
+<meta property="og:site_name" content="AgentKit Co">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Write an AGENTS.md That AI Coding Agents Follow">
+<meta property="og:description" content="A practical guide to writing AGENTS.md: the sections that matter, eight rules for lines agents actually follow, and a prompt that audits and trims your file.">
+<meta property="og:url" content="https://agentkitco.com/blog/how-to-write-agents-md/">
+<meta property="og:image" content="https://agentkitco.com/assets/og-cfg.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="How to Write an AGENTS.md That AI Coding Agents Follow">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Write an AGENTS.md That AI Coding Agents Follow">
+<meta name="twitter:description" content="A practical guide to writing AGENTS.md: the sections that matter, eight rules for lines agents actually follow, and a prompt that audits and trims your file.">
+<meta name="twitter:image" content="https://agentkitco.com/assets/og-cfg.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Write an AGENTS.md That AI Coding Agents Follow", "description": "A practical guide to writing AGENTS.md: the sections that matter, eight rules for lines agents actually follow, and a prompt that audits and trims your file.", "datePublished": "2026-10-16", "dateModified": "2026-10-15", "mainEntityOfPage": "https://agentkitco.com/blog/how-to-write-agents-md/", "image": "https://agentkitco.com/assets/og-cfg.png", "author": {"@type": "Organization", "name": "AgentKit Co"}, "publisher": {"@type": "Organization", "name": "AgentKit Co", "logo": {"@type": "ImageObject", "url": "https://agentkitco.com/assets/og-site.png"}}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://agentkitco.com/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://agentkitco.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "How to Write an AGENTS.md That AI Coding Agents Follow", "item": "https://agentkitco.com/blog/how-to-write-agents-md/"}]}</script>
+<script src="/assets/app.d03827e51a.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="bar">Launch offer: use code <code>LAUNCH20</code> for 20% off any single pack. <a href="/#products">See the packs</a></div>
+<header class="site"><div class="wrap">
+<a class="logo" href="/" aria-label="AgentKit Co home"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#4f46e5"/><path d="M18 44 32 16l14 28M23.5 36h17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="48" cy="18" r="4.5" fill="#f59e0b"/></svg><b>AgentKit<span> Co</span></b></a>
+<nav aria-label="Main"><ul><li><a href="/#products">Packs</a></li><li><a href="/free-prompts/">Free prompts</a></li><li><a href="/tools/agents-md-generator/">Free tool</a></li><li><a href="/blog/">Guides</a></li><li><a href="/advertise/">Advertise</a></li><li><a href="/about/">About</a></li></ul></nav>
+</div></header>
+<div id="live" class="vh" role="status" aria-live="polite"></div>
+<main id="main">
+<div class="narrow"><div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Guides</a></div>
+<article class="prose">
+<h1>How to Write an AGENTS.md That AI Coding Agents Follow</h1>
+<p class="meta">Published 2026-10-16 &middot; 3 min read &middot; by AgentKit Co</p>
+<p>An <code>AGENTS.md</code> file is a README for coding agents. The format is deliberately simple: plain Markdown, no required fields, and the closest file to the code being edited takes precedence. The hard part is not the format. It is deciding what to write so the agent follows it. This guide covers the sections that earn their place and the habits that keep the file useful.</p>
+<h2>Start with five sections</h2>
+<ol>
+<li><strong>Project:</strong> one or two lines. What it is and the stack with versions.</li>
+<li><strong>Commands:</strong> install, run, test all, test one file, lint, type-check, build. This is the highest-value section, because agents run what you list.</li>
+<li><strong>Layout:</strong> where things live, only where it is not obvious.</li>
+<li><strong>Conventions:</strong> rules that differ from the language defaults, each with a file to copy from.</li>
+<li><strong>Boundaries:</strong> what to ask about first and what to never touch.</li>
+</ol>
+<p>Add a short <strong>Git</strong> note if you have commit or pull request rules.</p>
+<pre><code class="language-text">## Commands
+- Install: `pnpm install`
+- Test one file: `pnpm test path/to/file.test.ts`
+- Before finishing: `pnpm tsc --noEmit &amp;&amp; pnpm lint &amp;&amp; pnpm test`
+
+## Boundaries
+- Ask before adding a dependency.
+- Never edit files in `migrations/`; create a new one.
+- Never read, print or commit `.env*` files.
+</code></pre>
+<h2>Eight rules for lines agents follow</h2>
+<ol>
+<li><strong>Commands before prose.</strong> "Run <code>pnpm test</code> before finishing" beats "make sure it works".</li>
+<li><strong>Be checkable.</strong> "Components live in <code>src/components/&lt;Name&gt;/</code>" can be verified. "Keep code organized" cannot.</li>
+<li><strong>Say what to copy.</strong> "New endpoints: copy <code>src/api/users/route.ts</code>" gives the agent a working example.</li>
+<li><strong>Only the non-obvious.</strong> Skip advice any agent already follows, such as "use meaningful names".</li>
+<li><strong>Name the hazard.</strong> "Never edit applied migrations" is better than "be careful with the database".</li>
+<li><strong>Give the reason when a rule is surprising.</strong> A reason helps the agent apply the rule sensibly.</li>
+<li><strong>One home per fact.</strong> If the same command is in the README, <code>AGENTS.md</code> and <code>CLAUDE.md</code>, one of them will go stale.</li>
+<li><strong>Prune after mistakes.</strong> Add a line when the agent makes the same mistake twice, and delete lines it already follows.</li>
+</ol>
+<h2>Keep it short, and keep it honest</h2>
+<p>Anthropic suggests under 200 lines for a <code>CLAUDE.md</code>, and the same advice applies to any instruction file. When a file grows, split area-specific rules into nested <code>AGENTS.md</code> files or path-scoped rules. Remember too that these files are guidance: an agent can still ignore a line, so back critical limits with permission settings or hooks.</p>
+<h2>Let the agent audit the file</h2>
+<p>Once you have a draft, ask your agent to check it. This prompt sorts every line into keep, verify, cut, merge or move, and waits for your approval:</p>
+<pre><code class="language-text">Audit the file [PATH TO INSTRUCTION FILE]. Do not edit it yet.
+
+Sort every line into one of five groups:
+KEEP: concrete, checkable, and not obvious from the code.
+VERIFY: refers to a command, path or tool. Check that it exists and report what you found.
+CUT: vague (&quot;write clean code&quot;), generic advice any agent already follows, or a copy of README content.
+MERGE: duplicates or overlaps another line.
+MOVE: only matters for part of the repo, so it belongs in a path-scoped rule or a nested file.
+
+Output a table: line number | group | reason. Then show the trimmed file and a one-line summary of how many lines you removed. Wait for my approval before writing anything.
+</code></pre>
+<p>Then check that every command in the file really exists. A stale command costs more than a missing one, because the agent trusts it.</p>
+<h2>Make your first file now</h2>
+<p>The free <a href="/tools/agents-md-generator/">AGENTS.md generator</a> builds a starting file from your stack and commands, and also outputs a matching <code>CLAUDE.md</code>, Cursor rule and Copilot instructions file. For finished templates covering twelve stacks and the rest of the audit prompts, see the Config Kit below.</p>
+<p><em>Format details checked against <a href="https://agents.md">agents.md</a> and the Claude Code, Cursor and GitHub Copilot docs on 2026-10-16. This guide was written with AI assistance. AgentKit Co is not affiliated with those companies.</em></p>
+<div class="cta"><h3>AI Coding Agent Config Kit</h3><p>Instruction-file templates for 12 stacks and 12 prompts that write and audit them. 34-page PDF, $14.</p>
+<div class="btns"><a class="btn" href="https://burmunster.gumroad.com/l/agent-config-kit">Buy on Gumroad</a><a class="btn alt" href="/products/agent-config-kit/">See what's inside</a></div></div>
+<div class="cta"><h3>Not ready to buy? Start with the free PDF.</h3><p>Get 10 of our most-used prompts as a free PDF from Gumroad. You will be asked for your email so Gumroad can deliver it.</p><div class="btns"><a class="btn" href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a><a class="btn alt" href="/free-prompts/">Browse 59 prompts here</a></div></div>
+<h2>Keep reading</h2><div class="post-list"><a href="/blog/agents-md-vs-claude-md-vs-cursor-rules/"><strong>AGENTS.md vs CLAUDE.md vs Cursor Rules: Which Do You Need?</strong><span>AGENTS.md, CLAUDE.md, Cursor rules and Copilot instructions explained: what each file does, which tools read it, and a simple setup that keeps them in sync.</span><span class="meta-line">3 min read</span></a><a href="/blog/what-is-an-ai-agent/"><strong>What Is an AI Agent? Plain-English Guide for Beginners</strong><span>What an AI agent is, how it differs from a chatbot or automation, and the four building blocks every agent has. No jargon.</span><span class="meta-line">4 min read</span></a><a href="/blog/build-ai-agent-without-coding/"><strong>Build Your First AI Agent Without Coding (Step by Step)</strong><span>A no-code walkthrough for building a simple AI agent in the chat assistant you already use, with a starter prompt and testing checklist.</span><span class="meta-line">4 min read</span></a></div>
+</article></div>
+</main>
+<footer class="site"><div class="wrap"><div class="cols">
+<div><h2>AgentKit Co</h2><p>Practical AI agent kits and prompt packs for beginners. Checkout is handled securely by Gumroad.</p><p><a href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a></p></div>
+<div><h2>Packs</h2><ul><li><a href="/products/ai-agent-starter-kit/">AI Agent Starter Kit</a></li><li><a href="/products/coding-prompt-pack/">Coding Prompt Pack</a></li><li><a href="/products/game-design-prompt-pack/">Game Design Pack</a></li><li><a href="/products/tabletop-rpg-prompt-pack/">Tabletop RPG Pack</a></li><li><a href="/products/agent-blueprints-vol-2/">Agent Blueprints Vol. 2</a></li><li><a href="/products/agent-config-kit/">AI Coding Agent Config Kit</a></li><li><a href="/products/agentkit-bundle/">Bundle ($24)</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="/free-prompts/">Free prompt library</a></li><li><a href="/tools/agents-md-generator/">AGENTS.md generator</a></li><li><a href="/blog/">Guides</a></li><li><a href="/blog/what-is-an-ai-agent/">What is an AI agent?</a></li></ul></div>
+<div><h2>Company</h2><ul><li><a href="/about/">About</a></li><li><a href="/advertise/">Advertise with us</a></li><li><a href="https://burmunster.gumroad.com/affiliates">Affiliate program (30%)</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/sitemap.xml">Sitemap</a></li></ul></div>
+</div><p class="legal">&copy; 2026 AgentKit Co. AI tools and product names mentioned belong to their owners. Example outputs in our guides are illustrative. AI can be wrong: read and test anything before you rely on it.</p></div></footer>
+</body></html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How to Write a Brag Document With AI (Without Inventing Metrics)</title>
+<meta name="description" content="Turn your commits, PRs and tickets into a brag document and self-review with an AI assistant, plus the rules that stop it making up numbers.">
+<link rel="canonical" href="https://agentkitco.com/blog/write-a-brag-document-with-ai/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="/assets/favicon.4166b660f0.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/style.49fbf7f475.css">
+<meta property="og:site_name" content="AgentKit Co">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to Write a Brag Document With AI (Without Inventing Metrics)">
+<meta property="og:description" content="Turn your commits, PRs and tickets into a brag document and self-review with an AI assistant, plus the rules that stop it making up numbers.">
+<meta property="og:url" content="https://agentkitco.com/blog/write-a-brag-document-with-ai/">
+<meta property="og:image" content="https://agentkitco.com/assets/og-rev.png">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="How to Write a Brag Document With AI (Without Inventing Metrics)">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to Write a Brag Document With AI (Without Inventing Metrics)">
+<meta name="twitter:description" content="Turn your commits, PRs and tickets into a brag document and self-review with an AI assistant, plus the rules that stop it making up numbers.">
+<meta name="twitter:image" content="https://agentkitco.com/assets/og-rev.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Write a Brag Document With AI (Without Inventing Metrics)", "description": "Turn your commits, PRs and tickets into a brag document and self-review with an AI assistant, plus the rules that stop it making up numbers.", "datePublished": "2026-10-16", "dateModified": "2026-10-15", "mainEntityOfPage": "https://agentkitco.com/blog/write-a-brag-document-with-ai/", "image": "https://agentkitco.com/assets/og-rev.png", "author": {"@type": "Organization", "name": "AgentKit Co"}, "publisher": {"@type": "Organization", "name": "AgentKit Co", "logo": {"@type": "ImageObject", "url": "https://agentkitco.com/assets/og-site.png"}}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://agentkitco.com/"}, {"@type": "ListItem", "position": 2, "name": "Guides", "item": "https://agentkitco.com/blog/"}, {"@type": "ListItem", "position": 3, "name": "How to Write a Brag Document With AI (Without Inventing Metrics)", "item": "https://agentkitco.com/blog/write-a-brag-document-with-ai/"}]}</script>
+<script src="/assets/app.d03827e51a.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="bar">Launch offer: use code <code>LAUNCH20</code> for 20% off any single pack. <a href="/#products">See the packs</a></div>
+<header class="site"><div class="wrap">
+<a class="logo" href="/" aria-label="AgentKit Co home"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="14" fill="#4f46e5"/><path d="M18 44 32 16l14 28M23.5 36h17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="48" cy="18" r="4.5" fill="#f59e0b"/></svg><b>AgentKit<span> Co</span></b></a>
+<nav aria-label="Main"><ul><li><a href="/#products">Packs</a></li><li><a href="/free-prompts/">Free prompts</a></li><li><a href="/tools/agents-md-generator/">Free tool</a></li><li><a href="/blog/">Guides</a></li><li><a href="/advertise/">Advertise</a></li><li><a href="/about/">About</a></li></ul></nav>
+</div></header>
+<div id="live" class="vh" role="status" aria-live="polite"></div>
+<main id="main">
+<div class="narrow"><div class="crumbs"><a href="/">Home</a> / <a href="/blog/">Guides</a></div>
+<article class="prose">
+<h1>How to Write a Brag Document With AI (Without Inventing Metrics)</h1>
+<p class="meta">Published 2026-10-16 &middot; 3 min read &middot; by AgentKit Co</p>
+<p>Review season has a predictable problem: you cannot remember what you did. Julia Evans described a simple fix in her post <a href="https://jvns.ca/blog/brag-documents/">Get your work recognized: write a brag document</a>: keep a running list of your work, with the impact, so that you and your manager have something concrete to point to. An AI assistant can make the list faster to build. It can also make it worse, if you let it invent. This guide shows the safe way to do it.</p>
+<h2>Step 1: collect evidence before you write anything</h2>
+<p>Do not start by asking an AI to "write my self-review". Start with records. Three sources cover most engineers:</p>
+<ul>
+<li><strong>Commits.</strong> <code>git log --author="you@example.com" --since=2026-01-01 --no-merges --date=short --pretty=format:'%h %ad %s'</code> lists your commits for a repository.</li>
+<li><strong>Merged pull requests.</strong> With the GitHub CLI, <code>gh search prs --author @me --merged --merged-at "&gt;=2026-01-01" --limit 200 --json title,url,closedAt,repository</code> lists merged PRs across repositories.</li>
+<li><strong>Tickets and kudos.</strong> Export your tracker as CSV and copy the thank-you messages people sent you.</li>
+</ul>
+<p>Review the output yourself before pasting it anywhere. Remove customer names, coworker names, credentials and anything your employer treats as confidential, and check your employer's rules on AI tools. If you are unsure, summarise in your own words instead of pasting.</p>
+<h2>Step 2: group, don't judge</h2>
+<p>Ask the assistant to group the evidence into themes and projects, nothing more. Commit counts and PR counts are not impact. A single small change that stopped an outage can matter more than fifty commits.</p>
+<pre><code class="language-text">Rewrite each item below as an impact statement with this shape: what I did, for whom, and what changed because of it.
+
+Items:
+[PASTE 3 TO 6 ITEMS]
+
+For each item:
+- If I have supplied the &quot;what changed&quot;, use it.
+- If I have not, write the statement with a clearly marked gap like [RESULT: ask me] and add a question I should answer.
+- Never write a number, percentage, time saving or dollar figure that I did not give you.
+Return a table: original | rewritten | gap or question.
+</code></pre>
+<p>This prompt does one important thing: where you have not told it the result, it leaves a visible gap and asks you a question, instead of filling in a plausible number.</p>
+<h2>Step 3: answer the questions with real data</h2>
+<p>For each project, find out what changed. Where might the number live? Support ticket tags, dashboards, billing, CI logs, an on-call log. If you only have a rough sense, say so. "Deploys went from about 20 minutes to about 10 on the last five runs I timed" is stronger than "cut deploy time by 50%" with nothing behind it, because anyone can check the first one.</p>
+<h2>Step 4: draft, then check tone</h2>
+<p>Once the brag document exists, drafting the self-review is easy, because you answer each question from evidence you already have. Then check the tone. Many engineers undersell ("I just helped with the rollout"), and a few oversell ("transformed our platform").</p>
+<pre><code class="language-text">Review my self-review text below for tone. Tell me where I:
+1. Undersell (hedging, &quot;just&quot;, &quot;helped with&quot;, passive voice, crediting everyone but me).
+2. Oversell (claims bigger than the evidence, &quot;led&quot; when I contributed, vague superlatives).
+3. Use filler or jargon.
+For each issue quote the phrase, explain it, and suggest a plainer replacement that stays within the evidence. Do not change facts.
+
+[PASTE TEXT]
+</code></pre>
+<h2>Step 5: audit every claim</h2>
+<p>Before you submit, take each sentence and ask: what is the link, ticket, message or person that backs this up? If there is none, soften the claim or find the evidence. Reviewers and promotion committees often ask "how do you know?", and a claim you can verify survives that question.</p>
+<h2>What not to do</h2>
+<ul>
+<li>Do not ask the AI for numbers. It will happily provide them, and they will be made up.</li>
+<li>Do not paste source code, personal data, other people's reviews or HR documents into an AI tool.</li>
+<li>Do not claim team results as your own. Use "I" for what you did and name the team for the rest.</li>
+<li>Do not skip reading the final text. You are the one submitting it.</li>
+</ul>
+<h2>A fuller toolkit</h2>
+<p>The <strong>Engineer Review-Season Prompt Pack</strong> (36 prompts, 25-page PDF) follows this exact flow, from evidence collection through the brag document, the self-review, a promotion case, peer and manager conversations and next year's goals. It was written with AI assistance and edited, and it is not career or HR advice. If you would rather start free, the two prompts above are enough to begin, and the <a href="/free-prompts/">free prompt library</a> has more.</p>
+<div class="cta"><h3>Engineer Review-Season Prompt Pack</h3><p>36 prompts that turn your commits, PRs and tickets into a brag doc, a self-review and next year&#x27;s goals. 25-page PDF, $12. Coming soon on Gumroad.</p>
+<div class="btns"><span class="small"><strong>Coming soon</strong></span><a class="btn alt" href="/products/engineer-review-season-prompt-pack/">See what's inside</a></div></div>
+<div class="cta"><h3>Not ready to buy? Start with the free PDF.</h3><p>Get 10 of our most-used prompts as a free PDF from Gumroad. You will be asked for your email so Gumroad can deliver it.</p><div class="btns"><a class="btn" href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a><a class="btn alt" href="/free-prompts/">Browse 59 prompts here</a></div></div>
+<h2>Keep reading</h2><div class="post-list"><a href="/blog/what-is-an-ai-agent/"><strong>What Is an AI Agent? Plain-English Guide for Beginners</strong><span>What an AI agent is, how it differs from a chatbot or automation, and the four building blocks every agent has. No jargon.</span><span class="meta-line">4 min read</span></a><a href="/blog/build-ai-agent-without-coding/"><strong>Build Your First AI Agent Without Coding (Step by Step)</strong><span>A no-code walkthrough for building a simple AI agent in the chat assistant you already use, with a starter prompt and testing checklist.</span><span class="meta-line">4 min read</span></a><a href="/blog/write-system-prompt-for-ai-agent/"><strong>How to Write a System Prompt for an AI Agent (Template)</strong><span>A six-part template for system prompts that make AI agents reliable: role, goal, process, format, rules and self-check, with examples.</span><span class="meta-line">4 min read</span></a></div>
+</article></div>
+</main>
+<footer class="site"><div class="wrap"><div class="cols">
+<div><h2>AgentKit Co</h2><p>Practical AI agent kits and prompt packs for beginners. Checkout is handled securely by Gumroad.</p><p><a href="https://burmunster.gumroad.com/l/free-prompts">Get the free 10-prompt PDF</a></p></div>
+<div><h2>Packs</h2><ul><li><a href="/products/ai-agent-starter-kit/">AI Agent Starter Kit</a></li><li><a href="/products/coding-prompt-pack/">Coding Prompt Pack</a></li><li><a href="/products/game-design-prompt-pack/">Game Design Pack</a></li><li><a href="/products/tabletop-rpg-prompt-pack/">Tabletop RPG Pack</a></li><li><a href="/products/agent-blueprints-vol-2/">Agent Blueprints Vol. 2</a></li><li><a href="/products/agent-config-kit/">AI Coding Agent Config Kit</a></li><li><a href="/products/agentkit-bundle/">Bundle ($24)</a></li></ul></div>
+<div><h2>Learn</h2><ul><li><a href="/free-prompts/">Free prompt library</a></li><li><a href="/tools/agents-md-generator/">AGENTS.md generator</a></li><li><a href="/blog/">Guides</a></li><li><a href="/blog/what-is-an-ai-agent/">What is an AI agent?</a></li></ul></div>
+<div><h2>Company</h2><ul><li><a href="/about/">About</a></li><li><a href="/advertise/">Advertise with us</a></li><li><a href="https://burmunster.gumroad.com/affiliates">Affiliate program (30%)</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/sitemap.xml">Sitemap</a></li></ul></div>
+</div><p class="legal">&copy; 2026 AgentKit Co. AI tools and product names mentioned belong to their owners. Example outputs in our guides are illustrative. AI can be wrong: read and test anything before you rely on it.</p></div></footer>
+</body></html>
